@@ -9,6 +9,9 @@ interface CollaboratedClub {
   imageUrl: string;
 }
 
+const COLLABORATIONS_CACHE_KEY = 'austrc_collaborations_cache';
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
 export function CollaborationsSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [clubs, setClubs] = useState<CollaboratedClub[]>([]);
@@ -16,10 +19,24 @@ export function CollaborationsSection() {
   const x = useMotionValue(0);
   const speed = -64; // pixels per second (1920px in 30s = 64px/s)
 
-  // Fetch collaborated clubs from Firebase
+  // Fetch collaborated clubs from Firebase with caching
   useEffect(() => {
     const fetchClubs = async () => {
       try {
+        // Check if data exists in cache
+        const cachedData = localStorage.getItem(COLLABORATIONS_CACHE_KEY);
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          // Check if cache is still valid
+          if (Date.now() - timestamp < CACHE_DURATION) {
+            setClubs(data);
+            setLoading(false);
+            console.log('Loaded collaborations from cache');
+            return;
+          }
+        }
+
+        // Fetch from Firebase if cache is empty or expired
         const clubsDocRef = doc(db, 'All_Data', 'Collaborated_Clubs');
         const clubsDoc = await getDoc(clubsDocRef);
 
@@ -45,7 +62,14 @@ export function CollaborationsSection() {
             return numA - numB;
           });
 
+          // Store in cache
+          localStorage.setItem(COLLABORATIONS_CACHE_KEY, JSON.stringify({
+            data: fetchedClubs,
+            timestamp: Date.now(),
+          }));
+
           setClubs(fetchedClubs);
+          console.log('Loaded collaborations from Firebase and cached');
         }
       } catch (error) {
         console.error('Error fetching collaborated clubs:', error);

@@ -9,6 +9,9 @@ interface Sponsor {
   imageUrl: string;
 }
 
+const SPONSORS_CACHE_KEY = 'austrc_sponsors_cache';
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
 export function SponsorsSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [sponsors, setSponsors] = useState<Sponsor[]>([]);
@@ -16,10 +19,24 @@ export function SponsorsSection() {
   const x = useMotionValue(0);
   const speed = -64; // pixels per second
 
-  // Fetch sponsors from Firebase
+  // Fetch sponsors from Firebase with caching
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
+        // Check if data exists in cache
+        const cachedData = localStorage.getItem(SPONSORS_CACHE_KEY);
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          // Check if cache is still valid
+          if (Date.now() - timestamp < CACHE_DURATION) {
+            setSponsors(data);
+            setLoading(false);
+            console.log('Loaded sponsors from cache');
+            return;
+          }
+        }
+
+        // Fetch from Firebase if cache is empty or expired
         const sponsorsDocRef = doc(db, 'All_Data', 'Sponsor_Images');
         const sponsorsDoc = await getDoc(sponsorsDocRef);
 
@@ -45,7 +62,14 @@ export function SponsorsSection() {
             return numA - numB;
           });
 
+          // Store in cache
+          localStorage.setItem(SPONSORS_CACHE_KEY, JSON.stringify({
+            data: fetchedSponsors,
+            timestamp: Date.now(),
+          }));
+
           setSponsors(fetchedSponsors);
+          console.log('Loaded sponsors from Firebase and cached');
         }
       } catch (error) {
         console.error('Error fetching sponsors:', error);
