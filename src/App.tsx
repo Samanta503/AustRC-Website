@@ -58,7 +58,7 @@ function AppContent() {
         <Route path="/developers" element={<DevelopersPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Footer theme={isAboutPage ? 'light' : 'dark'} />
+      {!isAboutPage && <Footer theme="dark" />}
     </div>
   );
 }
