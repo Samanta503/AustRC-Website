@@ -295,7 +295,7 @@ export function AppDownloadPage() {
   const stats = [
     { value: 500, suffix: '+', label: 'Downloads', icon: Download },
     { value: 4.8, suffix: '', label: 'Rating', icon: Star },
-    { value: 15, suffix: 'MB', label: 'Size', icon: Smartphone },
+    { value: 67, suffix: 'MB', label: 'Size', icon: Smartphone },
     { value: 100, suffix: '%', label: 'Free', icon: Gift }
   ];
 
@@ -1031,7 +1031,7 @@ export function AppDownloadPage() {
                   Download Now — It's Free
                 </Button>
                 
-                <Button
+                {/* <Button
                   onClick={handleCopyLink}
                   variant="outline"
                   className="px-10 py-7 text-lg font-semibold border-2 border-gray-700 hover:border-[#2ECC71] text-white hover:bg-[#2ECC71]/10 rounded-2xl transition-all duration-300"
@@ -1047,10 +1047,10 @@ export function AppDownloadPage() {
                       Share with Friends
                     </>
                   )}
-                </Button>
+                </Button> */}
               </motion.div>
 
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -1064,14 +1064,14 @@ export function AppDownloadPage() {
                 <div className="w-1 h-1 bg-gray-600 rounded-full" />
                 <div className="flex items-center gap-2">
                   <Download className="w-4 h-4" />
-                  <span>15 MB</span>
+                  <span>67 MB</span>
                 </div>
                 <div className="w-1 h-1 bg-gray-600 rounded-full" />
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4" />
                   <span>100% Secure</span>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </div>
           </motion.div>
         </div>
