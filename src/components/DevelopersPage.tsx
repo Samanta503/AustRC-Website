@@ -620,7 +620,7 @@ export function DevelopersPage() {
   const headerOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0.8]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-black relative overflow-hidden" style={{ position: 'relative' }}>
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] z-50 origin-left"
@@ -631,13 +631,8 @@ export function DevelopersPage() {
       <div className="absolute inset-0" style={{ transform: 'translateZ(0)' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
         
-        {/* Large gradient orbs - Static on mobile, animated on desktop */}
-        {isMobile ? (
-          <>
-            <div className="absolute top-20 -left-40 w-[400px] h-[400px] bg-[#2ECC71] rounded-full opacity-15" style={{ filter: 'blur(100px)' }} />
-            <div className="absolute bottom-20 -right-40 w-[400px] h-[400px] bg-[#27AE60] rounded-full opacity-15" style={{ filter: 'blur(100px)' }} />
-          </>
-        ) : (
+        {/* Large gradient orbs - None on mobile, animated on desktop */}
+        {!isMobile && (
           <>
             <motion.div
               className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[rgba(46,204,113,0.1)] via-transparent to-[rgba(46,204,113,0.1)]"
