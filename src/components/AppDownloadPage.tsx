@@ -572,7 +572,7 @@ export function AppDownloadPage() {
                       
                       {/* The Mockup Image */}
                       <motion.img
-                        src="/src/assets/mockup.png"
+                        src="https://ik.imagekit.io/mekt2pafz/Web%20site%20team/mockup.png"
                         alt="AUSTRC Mobile App"
                         className="relative z-10 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] h-auto drop-shadow-[0_0_80px_rgba(46,204,113,0.3)]"
                         initial={{ opacity: 0, scale: 0.8 }}
