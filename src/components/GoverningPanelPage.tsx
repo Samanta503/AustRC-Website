@@ -395,7 +395,7 @@ export function GoverningPanelPage() {
                         <div className="absolute inset-0 bg-gradient-to-br from-[#2ECC71]/5 via-transparent to-[#27AE60]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                         {/* ✅ FULL IMAGE SHOWING (no cropping) */}
-                        <div className="relative h-80 md:h-96 overflow-hidden bg-black">
+                        <div className="relative w-full aspect-[3/4] bg-black overflow-hidden">
                           <motion.img
                             src={member.image}
                             alt={member.name}
