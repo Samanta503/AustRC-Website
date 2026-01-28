@@ -21,7 +21,7 @@ export function Navbar() {
   const [mobileActivitiesOpen, setMobileActivitiesOpen] = useState(false);
   const [mobileGoverningOpen, setMobileGoverningOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [governingPanelDropdownItems, setGoverningPanelDropdownItems] = useState<{name: string; path: string}[]>([]);
+  const [governingPanelDropdownItems, setGoverningPanelDropdownItems] = useState<{ name: string; path: string }[]>([]);
   const [loadingSemesters, setLoadingSemesters] = useState(true);
 
   const location = useLocation();
@@ -91,7 +91,7 @@ export function Navbar() {
         setLoadingSemesters(true);
         const semestersRef = collection(db, 'All_Data', 'Governing_Panel', 'Semesters');
         const snapshot = await getDocs(semestersRef);
-        
+
         const semesters = snapshot.docs.map(doc => {
           const semesterName = doc.id;
           // Convert semester name to URL-friendly path (e.g., "Fall 2024" -> "fall-2024")
@@ -106,7 +106,7 @@ export function Navbar() {
         const sortedSemesters = semesters.sort((a, b) => {
           if (a.name === 'Hall of Fame') return -1;
           if (b.name === 'Hall of Fame') return 1;
-          
+
           const extractYearAndSeason = (name: string) => {
             const match = name.match(/(Fall|Spring)\s+(\d{4})/);
             if (match) {
@@ -116,10 +116,10 @@ export function Navbar() {
             }
             return { season: -1, year: 0 };
           };
-          
+
           const aInfo = extractYearAndSeason(a.name);
           const bInfo = extractYearAndSeason(b.name);
-          
+
           // Sort by year descending first
           if (bInfo.year !== aInfo.year) return bInfo.year - aInfo.year;
           // For same year, Fall (1) comes before Spring (0), so descending order
