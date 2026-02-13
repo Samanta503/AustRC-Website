@@ -52,22 +52,6 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
         ))}
       </div>
 
-      {/* Fixed Back Button (top) */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-20 left-6 z-50"
-      >
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[rgba(46,204,113,0.15)] to-[rgba(46,204,113,0.05)] rounded-lg border border-[rgba(46,204,113,0.4)] hover:border-[rgba(46,204,113,0.7)] text-[#2ECC71] transition-all hover:shadow-[0_0_20px_0_rgba(46,204,113,0.4)]"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span className="hidden sm:inline">Back to Projects</span>
-        </button>
-      </motion.div>
-
       <div className="container mx-auto px-4 pt-20 pb-24 max-w-6xl">
         {/* Image Carousel */}
         <motion.div
@@ -365,17 +349,6 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
         )}
       </div>
 
-      {/* Floating Back Button (bottom) */}
-       <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        onClick={onBack}
-        className="fixed right-6 bottom-6 md:right-8 md:bottom-8 z-50 px-6 py-3 bg-[#2ECC71] hover:bg-[#27AE60] text-white rounded-full shadow-[0_0_30px_0_rgba(46,204,113,0.5)] hover:shadow-[0_0_40px_0_rgba(46,204,113,0.7)] transition-all font-semibold flex items-center gap-2"
-      >
-        <ArrowLeft className="w-5 h-5" />
-        Back
-      </motion.button>
     </main>
   );
 }
