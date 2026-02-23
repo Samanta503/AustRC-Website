@@ -75,16 +75,19 @@ export function ActivitiesPage() {
       </motion.div>
 
       {/* Activity Sections */}
-      <div className="container mx-auto px-6 space-y-28">
-        {activities.slice(0, -1).map((activity, index) => (
-          <div key={activity.id}>
+      <div className="container mx-auto px-6">
+        <div className="space-y-20">
+          {activities.slice(0, -1).map((activity, index) => (
             <motion.div
+              key={activity.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+              className="bg-gradient-to-br from-black via-black/95 to-black border border-[#2ECC71]/20 rounded-2xl p-8 md:p-12"
             >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              
               {/* Image on LEFT */}
               {activity.imagePosition === 'left' && (
                 <>
@@ -95,7 +98,7 @@ export function ActivitiesPage() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="relative h-80 md:h-96 overflow-hidden rounded-2xl">
+                    <div className="relative h-56 md:h-64 overflow-hidden rounded-2xl">
                       <motion.img
                         src={activity.image}
                         alt={activity.title}
@@ -179,7 +182,7 @@ export function ActivitiesPage() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="relative h-80 md:h-96 overflow-hidden rounded-2xl">
+                    <div className="relative h-56 md:h-64 overflow-hidden rounded-2xl">
                       <motion.img
                         src={activity.image}
                         alt={activity.title}
@@ -194,55 +197,53 @@ export function ActivitiesPage() {
                   </motion.div>
                 </>
               )}
-            </motion.div>
-
-            {/* Divider */}
-            {index !== activities.length - 2 && (
-              <div className="h-px bg-gradient-to-r from-[#2ECC71]/0 via-[#2ECC71]/30 to-[#2ECC71]/0 mt-28"></div>
-            )}
-          </div>
-        ))}
-
-        {/* Our Event Website Section - Special Corner Design */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex justify-end mt-32"
-        >
-          <motion.div
-            className="w-full md:w-1/2 bg-gradient-to-br from-[#2ECC71]/10 to-[#27AE60]/5 backdrop-blur-md border border-[#2ECC71]/30 rounded-2xl p-8 md:p-12"
-            whileHover={{ 
-              scale: 1.02,
-              boxShadow: '0 0 30px rgba(46, 204, 113, 0.2)'
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-1 w-8 bg-gradient-to-r from-[#2ECC71] to-[#27AE60]"></div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#2ECC71]">
-                Our Event Website
-              </h2>
             </div>
-            
-            <p className="text-gray-300 leading-relaxed mb-8">
-              {activities[4].description}
-            </p>
+            </motion.div>
+          ))}
 
-            <motion.button
-              onClick={activities[4].buttonAction}
-              className="w-full px-8 py-3 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 0 20px rgba(46, 204, 113, 0.5)'
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {activities[4].buttonText}
-            </motion.button>
+          {/* Our Event Website Section - Special Corner Design */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-gradient-to-br from-black via-black/95 to-black border border-[#2ECC71]/20 rounded-2xl p-8 md:p-12 mt-8"
+          >
+            <div className="flex justify-center lg:justify-start">
+              <motion.div
+                className="w-full"
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: '0 0 30px rgba(46, 204, 113, 0.2)'
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-1 w-8 bg-gradient-to-r from-[#2ECC71] to-[#27AE60]"></div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#2ECC71]">
+                    Our Event Website
+                  </h2>
+                </div>
+                
+                <p className="text-gray-300 leading-relaxed mb-8">
+                  {activities[4].description}
+                </p>
+
+                <motion.button
+                  onClick={activities[4].buttonAction}
+                  className="w-1/3 px-8 py-3 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: '0 0 20px rgba(46, 204, 113, 0.5)'
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {activities[4].buttonText}
+                </motion.button>
+              </motion.div>
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
