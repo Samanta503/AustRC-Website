@@ -233,12 +233,12 @@ export function ProjectDetailPage({ project: propProject, onBack }: ProjectDetai
           className="mb-12"
         >
           <div className="relative rounded-2xl overflow-hidden shadow-[0_0_60px_0_rgba(46,204,113,0.3)]">
-            <div className="aspect-video relative">
+            <div className="relative bg-black/40 min-h-[220px]">
               {project.carouselImages[currentImageIndex] ? (
                 <img
                   src={project.carouselImages[currentImageIndex]}
                   alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#2ECC71]/30 to-[#27AE60]/10">
@@ -481,7 +481,7 @@ export function ProjectDetailPage({ project: propProject, onBack }: ProjectDetai
                             <img
                               src={image}
                               alt={`${section.heading || 'Section'} - Image ${imgIdx + 1}`}
-                              className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                              className="w-full h-auto object-contain"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </motion.div>
