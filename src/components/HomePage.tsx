@@ -94,7 +94,9 @@ export function HomePage() {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
         <HeroSection />
       </motion.div>
+<AnimatedDivider />
 
+<NoticesBoardHomepageSection />
       <AnimatedDivider />
 
       <motion.div
@@ -106,9 +108,7 @@ export function HomePage() {
         <EventsSection />
       </motion.div>
 
-      <AnimatedDivider />
-
-<NoticesBoardHomepageSection />
+      
 
       <AnimatedDivider />
       <motion.div
