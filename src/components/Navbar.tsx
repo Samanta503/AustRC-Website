@@ -450,18 +450,26 @@ export function Navbar() {
                       animate="open"
                       className="border-b border-white/5"
                     >
-                      <button
-                        className="w-full flex items-center justify-between py-4 px-3 text-gray-300 hover:text-[#2ECC71] transition-colors"
-                        onClick={() => setMobileActivitiesOpen(!mobileActivitiesOpen)}
-                      >
-                        <span className="text-base font-medium">{item.name}</span>
-                        <motion.div
-                          animate={{ rotate: mobileActivitiesOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
+                      <div className="flex items-center justify-between py-4 px-3">
+                        <Link
+                          to="/activities"
+                          className="flex-1 text-gray-300 hover:text-[#2ECC71] transition-colors text-base font-medium"
+                          onClick={() => setMobileMenuOpen(false)}
                         >
-                          <ChevronDown className="w-5 h-5" />
-                        </motion.div>
-                      </button>
+                          {item.name}
+                        </Link>
+                        <button
+                          className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 text-gray-300 hover:text-[#2ECC71] transition-colors -mr-2"
+                          onClick={() => setMobileActivitiesOpen(!mobileActivitiesOpen)}
+                        >
+                          <motion.div
+                            animate={{ rotate: mobileActivitiesOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-5 h-5" />
+                          </motion.div>
+                        </button>
+                      </div>
                       <AnimatePresence>
                         {mobileActivitiesOpen && (
                           <motion.div
